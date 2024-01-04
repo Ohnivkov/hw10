@@ -6,12 +6,11 @@ db = client["hw8"]
 with open('quotes.json','r', encoding='utf-8') as fd:
     quotes = json.load(fd)
 
-for quote in quotes:
-    author = db.authors.find_one({'fullname': quote['author']})
-    print(author)
+for qoute in quotes:
+    author = db.authors.find_one({'fullname': qoute['author']})
     if author:
         db.quotes.insert_one({
-            'quote': quote['quote'],
-            'tags': quote['tags'],
+            'quote': qoute['quote'],
+            'tags': qoute['tags'],
             'author':ObjectId(author['_id'])
         })
